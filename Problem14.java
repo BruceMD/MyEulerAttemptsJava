@@ -11,11 +11,11 @@ public class Problem14 {
 
         for (int i = 1; i < 1000000; i++){
             int count = 0;
-            int n = i;
+            long n = i;
             while(n != 1){
                 if(n < 1000000){
-                    if (collArr[n] > 0){
-                        count += collArr[n];
+                    if (collArr[(int)n] > 0){
+                        count += collArr[(int)n];
                         break;
                     }
                 }
