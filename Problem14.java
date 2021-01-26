@@ -4,29 +4,40 @@ public class Problem14 {
 
     static void longCollatz(){
 
-        long[] collArr = new long[1000001];
+        int maxCount = 0;
+        int maxID = 0;
 
-        for(int i = 1; i < 1000000; i++){
-            long count = 0;
-            long n = i;
+        int[] collArr = new int[1000001];
+
+        for (int i = 1; i < 1000000; i++){
+            int count = 0;
+            int n = i;
             while(n != 1){
-                if (n < 1000000 && collArr[n] > 0){
-                    collArr[i] = count + collArr[n];
-                    System.out.println("Bang, shortened!");
+                if(n < 1000000){
+                    if (collArr[n] > 0){
+                        count += collArr[n];
+                        break;
+                    }
                 }
                 if (n % 2 == 0){
-                    n /= 2;
+                    n = n/2;
                 }
                 else{
-                    n = 3*n+1;
+                    n = 3*n + 1;
                 }
                 count ++;
             }
-            System.out.println(i);
-            System.out.println(count);
+
+            collArr[i] = count;
+
+            if (count > maxCount){
+                System.out.println(i);
+                maxCount = count;
+                maxID = i;
+            }
         }
 
-        System.out.println(Arrays.toString(collArr));
+        System.out.println(maxID);
 
     }
 }
