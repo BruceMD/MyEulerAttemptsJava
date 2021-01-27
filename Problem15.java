@@ -11,25 +11,24 @@ public class Problem15 {
 
     static void lattice(){
 
-        for (int i = 19; i > -1; i--){
-            for (int j = 19; j > -1; j--){
+        gridCount.put("UU", 0L);
+
+        for (int i = 20; i > -1; i--){
+            for (int j = 20; j > -1; j--){
                 count = 0;
-                grid(i, j, 19, 19);
+                grid(i, j, 20, 20);
                 gridCount.put(ref(i)+ref(j), count);
 //                System.out.println(ref(i) + ref(j) + " " + gridCount.get(ref(i) + ref(j)));
             }
         }
+
+        System.out.println(gridCount.get("UU"));
 
         System.out.println(gridCount.get("AA"));
 
     }
 
     static void grid(int x, int y, int limx, int limy){
-
-        if (gridCount.containsKey(ref(x)+ref(y))){
-            count += gridCount.get(ref(x)+ref(y));
-            return;
-        }
 
         if (x == limx && y == limy){
             count ++;
@@ -41,12 +40,17 @@ public class Problem15 {
             grid(x + 1, y, limx, limy);
         }
         else{
-            for (int i = 0; i < 2; i++){
-                if (i == 0){
-                    grid(x + 1, y, limx, limy);
-                }
-                else{
-                    grid(x, y + 1, limx, limy);
+            if (gridCount.containsKey(ref(x)+ref(y))){
+                count += gridCount.get(ref(x)+ref(y));
+            }
+            else{
+                for (int i = 0; i < 2; i++){
+                    if (i == 0){
+                        grid(x + 1, y, limx, limy);
+                    }
+                    else{
+                        grid(x, y + 1, limx, limy);
+                    }
                 }
             }
         }
@@ -73,7 +77,29 @@ public class Problem15 {
         else if (num == 16) {return "Q";}
         else if (num == 17) {return "R";}
         else if (num == 18) {return "S";}
-        else {return "T";}
+        else if (num == 19) {return "T";}
+        else {return "U";}
+
+    }
+
+
+    static void combinations(){
+
+        Long[][] grid = new Long[21][21];
+
+        grid[0][0] = 0L;
+        for (int i = 1; i < 21; i++){
+            grid[i][0] = 1L;
+            grid[0][i] = 1L;
+        }
+
+        for (int i = 1; i < 21; i++){
+            for (int j = 1; j < 21; j++){
+                grid[i][j] = grid[i-1][j] + grid[i][j-1];
+            }
+        }
+
+        System.out.println(grid[20][20]);
 
     }
 
