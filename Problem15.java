@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -5,21 +6,38 @@ public class Problem15 {
 
     static int count = 0;
 
-    static Map<int[], Integer> map = new HashMap<int[], Integer>();
+    static Map<int[], Integer> gridCount = new HashMap<int[], Integer>();
 
     static void lattice(){
 
+        for (int i = 0; i < 20; i++){
+            for (int j = 0; j < 20; j++){
+                count = 0;
+                grid(0, 0, i, j);
+                int[] tempArr = {i, j};
+                gridCount.put(tempArr, count);
+                System.out.println(gridCount.containsKey(tempArr));
+                System.out.println(tempArr[0] + " " + tempArr[1]);
+                System.out.println(gridCount.size());
+            }
+        }
+
         System.out.println(count);
 
-        grid(0, 0, 5, 5);
-
-        System.out.println(count);
+        System.out.println(gridCount.get(new int[]{19, 19}));
 
     }
 
     static void grid(int x, int y, int limx, int limy){
 
-        System.out.println(x + " " + y);
+
+
+        int[] checkArr = {x, y};
+        if (gridCount.containsKey(checkArr)){
+            System.out.println("Saved time! at " + x + y);
+            count += gridCount.get(checkArr);
+            return;
+        }
 
         if (x == limx && y == limy){
             count ++;
