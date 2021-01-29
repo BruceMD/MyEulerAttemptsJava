@@ -4,8 +4,8 @@ public class Problem33 {
 
     static void digitCancel(){
 
-        double totalNum = 1;
-        double totalDen = 1;
+        int totalNum = 1;
+        int totalDen = 1;
 
         for (double num = 10; num < 99; num ++){
             for (double den = num + 1; den < 100; den++){
@@ -22,13 +22,13 @@ public class Problem33 {
         simplify(totalNum, totalDen);
     }
 
-    static void simplify(double num, double den){
+    static void simplify(int num, int den){
         ArrayList<Integer> pLis = primeList();
-        
-        double newNum = num;
-        double newDen = den;
+
+        int newNum = num;
+        int newDen = den;
         int n = 0;
-        
+
         while (n < pLis.size()){
             if (newNum % pLis.get(n) == 0 && newDen % pLis.get(n) == 0){
                 newNum = newNum / pLis.get(n);
