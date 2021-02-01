@@ -6,13 +6,14 @@ public class Problem41 {
 
     static void panPrime(){
 
-        for (int i = 1; i < 3; i++){
-            rec(i, genArr(i));
+        for (int i = 1; i < 10; i++){
+            rec(0, genArr(i));
         }
+        System.out.println("THE ANSWER IS : " + max);
     }
 
     static void rec(int num, ArrayList<Integer> arr){
-        System.out.println("THE NUM IS : " + num);
+
         if (arr.size() == 0){
             if (isPrime(num)){
                 if (num > max){
@@ -22,7 +23,6 @@ public class Problem41 {
             }
             return;
         }
-        System.out.println(arr);
         for (int a : arr){
             rec(num*10 + a, newArr(a, arr));
         }
@@ -47,7 +47,7 @@ public class Problem41 {
         }
         return arr;
     }
-    
+
     static boolean isPrime(int num){
         if (num % 2 == 0){
             return false;
