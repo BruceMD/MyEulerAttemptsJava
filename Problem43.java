@@ -7,7 +7,8 @@ public class Problem43 {
     static void subString(){
 
         rec("", arrGen());
-
+        
+        System.out.println("Final answer is :");
         System.out.printf("%.0f", count);
     }
 
