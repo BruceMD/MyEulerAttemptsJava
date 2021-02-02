@@ -2,7 +2,12 @@ import java.util.ArrayList;
 
 public class Problem47 {
 
+    static ArrayList<Integer> primeLis = new ArrayList<>();
+
     static void distinctPrimes(){
+
+        genPrimeList(1000000);
+
         int c = 500;
         while (true){
             if (consec(c)){
@@ -11,27 +16,25 @@ public class Problem47 {
             }
             c++;
         }
-
-
     }
 
     static boolean consec(int num){
-
         for (int a = 0; a < 4; a++){
-            if (factorCount(num+a) != 4){
+            if (!factorCount(num+a)){
                 return false;
             }
         }
         return true;
-
     }
 
-    static Integer factorCount(int num){
+    static boolean factorCount(int num){
         ArrayList<Integer> factors = new ArrayList<>();
-        ArrayList<Integer> primeLis = genPrimeList();
 
         int p = 0;
         while (num > 1){
+            if (factors.size() > 4){
+                return false;
+            }
             int temp = primeLis.get(p);
             if (num % temp == 0){
                 if (!factors.contains(temp)){
@@ -43,17 +46,17 @@ public class Problem47 {
                 p++;
             }
         }
-        return factors.size();
+        System.out.println(factors);
+        return factors.size() == 4;
     }
 
-    static ArrayList<Integer> genPrimeList(){
-        ArrayList<Integer> primeList = new ArrayList<>();
-        for (int i = 2; i < 100000; i++){
+    static void genPrimeList(int num){
+
+        for (int i = 2; i < num; i++){
             if (isPrime(i)){
-                primeList.add(i);
+                primeLis.add(i);
             }
         }
-        return primeList;
     }
 
     static boolean isPrime(int num) {
