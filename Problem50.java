@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class Problem50 {
 
     static ArrayList<Integer> primeList = new ArrayList<>();
