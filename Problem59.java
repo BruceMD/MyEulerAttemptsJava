@@ -12,14 +12,18 @@ public class Problem59 {
         for (int a = 97; a < 123; a++){
             for (int b = 97; b < 123; b++){
                 for (int c = 97; c < 123; c++){
-                    convert(a, b, c, encText);
+                    int temp = convert(a, b, c, encText);
+                    if (temp > 0){
+                        System.out.println(temp);
+                        return;
+                    }
                 }
             }
         }
 
     }
 
-    static boolean convert(int a, int b, int c, String[] encrypted){
+    static Integer convert(int a, int b, int c, String[] encrypted){
         String originalText = "";
 
         int n = 0;
@@ -32,11 +36,16 @@ public class Problem59 {
             n = n+3;
         }
 
-        if (originalText.contains("and") && originalText.contains("the")){
-            System.out.println(originalText);
-        }
+        int count = 0;
 
-        return true;
+        if (originalText.contains("Euler")){
+            System.out.println(originalText);
+            for (int i = 0; i < originalText.length(); i++){
+                count += (int)originalText.charAt(i);
+            }
+            return count;
+        }
+        return 0;
     }
 
     static String[] ReadFile(){
